@@ -1,0 +1,1 @@
+#Beverage class, Alcohol class, and Beer class go here( maybe also IPA for another?)

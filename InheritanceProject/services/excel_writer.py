@@ -1,0 +1,1 @@
+#gets data from database and submits report of all three
