@@ -25,15 +25,25 @@ class Beer(Alcohol):
     def serve(self):
         super().serve()
         return f"Beer is tasty! Enjoy your {self.beer_type}!"
+  
+class IPA(Beer):
+    def __init__(self, name, volume_oz, alcohol_content, ibu):
+        super().__init__(name, volume_oz, alcohol_content, beer_type="IPA")
+        self.ibu = ibu
 
+    def serve(self):
+        super().serve()
+        return f"This IPA has a bitterness of {self.ibu} IBU. Cheers!"
+    
 class Wine(Alcohol):
-    def __init__(self, name, volume_oz, alcohol_content, grape_varietal):
+    def __init__(self, name, volume_oz, alcohol_content, grape_varietal, country):
         super().__init__(name, volume_oz, alcohol_content)
         self.grape_varietal = grape_varietal
+        self.country = country
 
     def volume_ml(self):
         return self.volume_oz*29.5735
     
     def serve(self):
         super().serve()
-        return f"I love wine! Enjoy your {self.grape_varietal}!"
+        return f"I love wine! Enjoy your {self.grape_varietal} from {self.country}!"
