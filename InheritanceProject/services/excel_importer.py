@@ -1,6 +1,6 @@
 #import excel files and load data into the database
 import pandas as pd
-from services.db_service import init_db
+from services.db_service import get_connection
 from pathlib import Path
 
 def read_excel(file_path):
@@ -14,7 +14,7 @@ def read_excel(file_path):
     
 
 def import_excel_to_db(df,table_name):
-    conn = init_db()
+    conn = get_connection()
     if conn:
         try:
             df.to_sql(table_name, conn, if_exists='fail', index=False)

@@ -1,11 +1,11 @@
 #create a database service to handle database operations
 import sqlite3
-import pandas as pd
+from pathlib import Path
 
-DB_PATH = "../data/beverages.db"
+DB_PATH = Path("../data/beverages.db")
 
 #initialize the database connection
-def init_db(DB_PATH):
+def get_connection():
     try:
         conn = sqlite3.connect(DB_PATH)
         return conn
