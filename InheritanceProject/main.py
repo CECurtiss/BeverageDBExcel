@@ -1,4 +1,6 @@
 #generate report using excel writer
+import pandas as pd
+from services.excel_writer import generate_xlsx_report
 from services.db_service import get_connection
 from pathlib import Path
 from services.excel_importer import read_excel, import_excel_to_db
@@ -20,11 +22,11 @@ def main():
         df, table_name = read_excel(excel_file)
         print(f"Tables read to dataframe: {table_name}.")
         if df is not None:
-            print(df)
+            # print(df)
             import_excel_to_db(df, table_name, conn)
         else:
             print(f"Skipping file {excel_file} due to read error.")
-    
+    generate_xlsx_report(conn, excel_output_dir / "beverage_report.xlsx")
 
 if __name__ == "__main__":
     main()
