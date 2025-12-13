@@ -12,10 +12,3 @@ def init_db(DB_PATH):
     except sqlite3.Error as e:
         print(f"Error connecting to database: {e}")
         return None
-    
-
-#do not create tables. let pandas handle that.
-
-#load data from excel files into the database
-
-#return a combined excel report from the database tables
