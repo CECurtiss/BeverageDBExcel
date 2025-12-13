@@ -2,21 +2,22 @@
 import pandas as pd
 from pathlib import Path
 
-def generate_xlsx_report(conn, output_path, min_volume_oz=16):
+def generate_xlsx_report(conn, output_path):
     try:
         # Query to get requested data from all tables
         query = """
-        SELECT name, volume_oz, price, alcohol_content FROM WinesTable
+        SELECT name, volume_oz, price, alcohol_content FROM BeverageList1
         UNION ALL
-        SELECT name, volume_oz, price, alcohol_content FROM BeersTable
+        SELECT name, volume_oz, price, alcohol_content FROM BeverageList2
         UNION ALL
-        SELECT name, volume_oz, price, alcohol_content FROM IPAsTable
+        SELECT name, volume_oz, price, alcohol_content FROM BeverageList3
         UNION ALL
-        SELECT name, volume_oz, price, NULL AS alcohol_content FROM BeveragesTable
+        SELECT name, volume_oz, price, alcohol_content FROM BeverageList4
         """""
         df = pd.read_sql(query, conn)
         # Filter out volume_oz less than 16
-        df = df[df['volume_oz'] >= min_volume_oz]
+        df = df[df['volume_oz'] >= 16]
+        df = df.fillna({'alcohol_content': 'None'})
         
         # Write the dataframe to an xlsx file
         df.to_excel(output_path, index=False)
