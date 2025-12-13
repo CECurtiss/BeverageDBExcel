@@ -1,8 +1,7 @@
-#initialize database and import excel data
-#save data to database
 #generate report using excel writer
 from services.db_service import get_connection
 from pathlib import Path
+from services.excel_importer import read_excel, import_excel_to_db
 
 project_root = Path(__file__).resolve().parent
 data_dir = project_root / "data"
@@ -17,7 +16,15 @@ def main():
     else:
         print("Failed to connect to the database.")
 
-print("hello world")
+#call excel importer to read and write to db
+    for excel_file in excel_input_dir.glob("*.xls"):
+        df, table_name = read_excel(excel_file)
+        (print(table_name))
+        if df is not None:
+            import_excel_to_db(df, table_name)
+        else:
+            print(f"Skipping file {excel_file} due to read error.")
+    
 
 if __name__ == "__main__":
     main()
