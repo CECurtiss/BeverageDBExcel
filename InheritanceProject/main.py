@@ -20,7 +20,8 @@ def main():
         df, table_name = read_excel(excel_file)
         print(f"Tables read to dataframe: {table_name}.")
         if df is not None:
-            import_excel_to_db(df, table_name)
+            print(df)
+            import_excel_to_db(df, table_name, conn)
         else:
             print(f"Skipping file {excel_file} due to read error.")
     
