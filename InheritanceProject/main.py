@@ -15,11 +15,10 @@ def main():
         print("Database connection established.")
     else:
         print("Failed to connect to the database.")
-
-#call excel importer to read and write to db
-    for excel_file in excel_input_dir.glob("*.xls"):
+        #call excel importer to read and write to db
+    for excel_file in excel_input_dir.glob("*.xlsx"):
         df, table_name = read_excel(excel_file)
-        (print(table_name))
+        print(f"Tables read to dataframe: {table_name}.")
         if df is not None:
             import_excel_to_db(df, table_name)
         else:
