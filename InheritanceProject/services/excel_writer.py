@@ -1,6 +1,5 @@
 #gets data from database and submits report of all three
 import pandas as pd
-from pathlib import Path
 
 def generate_xlsx_report(conn, output_path):
     try:

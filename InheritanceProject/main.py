@@ -26,7 +26,11 @@ def main():
             import_excel_to_db(df, table_name, conn)
         else:
             print(f"Skipping file {excel_file} due to read error.")
-    generate_xlsx_report(conn, excel_output_dir / "beverage_report.xlsx")
-    conn.close()
+    try:
+        generate_xlsx_report(conn, excel_output_dir / "beverage_report.xlsx")
+    except Exception as e:
+        print(f"Error generating report: {e}")
+    finally:
+        conn.close()
 if __name__ == "__main__":
     main()
