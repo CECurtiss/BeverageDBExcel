@@ -7,8 +7,9 @@ class DBReader(DBService):
         super().__init__(db_path)
 
     def retrieve_from_db(self):
+        conn=self.get_connection()
+
         try:
-            conn=self.get_connection()
             query = """
             SELECT name, volume_oz, price, alcohol_content FROM BeverageList1
             UNION ALL
@@ -19,8 +20,8 @@ class DBReader(DBService):
             SELECT name, volume_oz, price, alcohol_content FROM BeverageList4
             """
             df = pd.read_sql(query, conn)
-            conn.close()
             return df
         except Exception as e:
-            print(f"Error fetching data: {e}")
-            return None
+            raise RuntimeError(f"Error retrieving data from database: {e}")
+        finally:
+             conn.close()

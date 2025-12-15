@@ -12,5 +12,4 @@ class DBService:
             print("Database connection established.")
             return conn
         except sqlite3.Error as e:
-            print(f"Error connecting to database: {e}")
-            return None
+            raise RuntimeError(f"Failed to connect to database. {e}")
