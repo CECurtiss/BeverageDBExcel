@@ -9,6 +9,7 @@ class DBService:
     def get_connection(self):
         try:
             conn = sqlite3.connect(self.db_path)
+            print("Database connection established.")
             return conn
         except sqlite3.Error as e:
             print(f"Error connecting to database: {e}")
