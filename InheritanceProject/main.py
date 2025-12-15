@@ -1,7 +1,6 @@
 #generate report using excel writer
-import pandas as pd
 from services.excel_importer import ExcelImporter
-from services.excel_writer import generate_xlsx_report
+from services.excel_writer import ExcelWriter
 from pathlib import Path
 
 project_root = Path(__file__).resolve().parent
@@ -22,7 +21,9 @@ def main():
     
 
     #generate report in xlsx format
-
+    writer = ExcelWriter(DB_PATH)
+    output_file = excel_output_dir / "BeverageReport.xlsx"
+    writer.generate_xlsx_report(output_file)
 
 
 if __name__ == "__main__":

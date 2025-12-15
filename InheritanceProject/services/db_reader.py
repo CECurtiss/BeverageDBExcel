@@ -1,11 +1,12 @@
+from pathlib import Path
 import pandas as pd
 from services.db_service import DBService
 
 class DBReader(DBService):
-    def __init__(self, db_path):
+    def __init__(self, db_path: Path):
         super().__init__(db_path)
 
-    def retrieve_from_db(self, table_name):
+    def retrieve_from_db(self):
         try:
             conn=self.get_connection()
             query = """
