@@ -2,7 +2,7 @@ from pathlib import Path
 import pandas as pd
 
 class ExcelReader:
-    def read_filesl(self, file_path: Path):
+    def read_files(self, file_path: Path):
         try:
             df = pd.read_excel(file_path)
             table_name = Path(file_path).stem
