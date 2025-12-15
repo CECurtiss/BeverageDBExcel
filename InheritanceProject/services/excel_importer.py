@@ -16,6 +16,6 @@ class ExcelImporter(DBService):
             df.to_sql(table_name, conn, if_exists='replace', index=False)
             print(f"{table_name} successfully added to db.")
             conn.close()
-            return df, table_name
+            return df
         except Exception as e:
             print(f"Error importing data to database: {e}")

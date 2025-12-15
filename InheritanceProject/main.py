@@ -14,7 +14,7 @@ def main():
     #read and import to db
     importer = ExcelImporter(DB_PATH)
     for excel_file in excel_input_dir.glob("*.xlsx"):
-        df, table_name = importer.import_df_to_db(excel_file)
+        df = importer.import_df_to_db(excel_file)
         if df is not None:
             print(df)
         else:
