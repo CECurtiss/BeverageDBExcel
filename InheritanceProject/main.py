@@ -17,7 +17,7 @@ def main():
         print("Database connection established.")
     else:
         print("Failed to connect to the database.")
-        #call excel importer to read and write to db
+    #For each excel file in input dir, read and import to db
     for excel_file in excel_input_dir.glob("*.xlsx"):
         df, table_name = read_excel(excel_file)
         print(f"Tables read to dataframe: {table_name}.")
@@ -26,6 +26,7 @@ def main():
             import_excel_to_db(df, table_name, conn)
         else:
             print(f"Skipping file {excel_file} due to read error.")
+    #Generate report using writer function
     try:
         generate_xlsx_report(conn, excel_output_dir / "beverage_report.xlsx")
     except Exception as e:
